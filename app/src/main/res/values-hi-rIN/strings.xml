@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Assignment 1</string>
     <string name="message">Namaste</string>
+    <string name="ButtonText">Mai button hun</string>
 </resources>
