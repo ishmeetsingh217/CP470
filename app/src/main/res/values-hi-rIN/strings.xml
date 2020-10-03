@@ -3,4 +3,10 @@
     <string name="app_name">Assignment 1</string>
     <string name="message">Namaste</string>
     <string name="ButtonText">Mai button hun</string>
+    <string name="LoginText">Log in karen</string>
+    <string name="LoginName">Naam likheye</string>
+    <string name="Passoword">Kunjika</string>
+    <string name="RadioButton">Rediyo Batan</string>
+    <string name="CheckBox">Jaanch Daba</string>
+    <string name="Switch">Yeh kya karega?</string>
 </resources>
