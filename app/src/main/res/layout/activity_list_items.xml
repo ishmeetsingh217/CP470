@@ -10,6 +10,8 @@
     android:orientation="horizontal" >
 
     <RadioButton android:text="@string/RadioButton">
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
     </RadioButton>
 
     <CheckBox android:text="@string/CheckBox"></CheckBox>
