@@ -2,55 +2,100 @@ package com.example.android.androidassignments;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
+
+
+
+import com.example.android.androidassignments.R;
+
+import java.security.Key;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private EditText emailAddress;
+    private Button LoginButton;
+
+    protected static final String ACTIVITY_NAME = "LoginActivity";
+
+    private SharedPreferences appPreferences;
+    private String sharedPreferencesFile = "com.example.myfirst.sharedpreferencesfile";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(ACTIVITY_NAME,"In onCreate()");
+
+        LoginButton = findViewById(R.id.LoginButton);
+        emailAddress = findViewById(R.id.txtEmailAddress);
+
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+
         setContentView(R.layout.activity_login);
+        appPreferences = getSharedPreferences(sharedPreferencesFile, MODE_PRIVATE);
+        String userName = appPreferences.getString("LOGIN_USER_NAME", "");
+        if(!(userName.equals("")))
+        {
+            emailAddress.setText(userName);
+        }
+        LoginButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String user = emailAddress.getText().toString().trim();
 
-        Log.i(msg:"onCreate")
+                if(!(user.equals("")))
+                {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
-    protected void onResume() {
+    public void onResume(){
         super.onResume();
-
+        Log.i(ACTIVITY_NAME,"In onResume()");
 
     }
 
     @Override
-    protected void onStart() {
+    public void onStart(){
         super.onStart();
+        Log.i(ACTIVITY_NAME,"In onStart()");
 
     }
 
     @Override
-    protected void onPause() {
+    public void onPause(){
         super.onPause();
-
+        Log.i(ACTIVITY_NAME,"In onPause()");
+        SharedPreferences.Editor prefEditor = appPreferences.edit();
+        prefEditor.putString("LOGIN_USER_NAME", emailAddress.getText().toString().trim());
+        prefEditor.apply();
 
     }
 
     @Override
-    protected void onStop() {
+    public void onStop(){
         super.onStop();
+        Log.i(ACTIVITY_NAME,"In onStop()");
 
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy(){
         super.onDestroy();
+        Log.i(ACTIVITY_NAME,"In onDestroy()");
 
     }
-    protected static final String ACTIVITY_NAME = "MainActivity";
-
-
-
-
-
 }

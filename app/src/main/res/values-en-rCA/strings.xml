@@ -9,4 +9,14 @@
     <string name="RadioButton">Radio Button</string>
     <string name="CheckBox">Check Box</string>
     <string name="Switch">What does this do?</string>
+
+    <string name="yes_label">YES</string>
+    <string name="no_label">NO</string>
+    <string name="cofirm_label">CONFIRM</string>
+    <string name="confirmation_label">Are you sure?</string>
+    <string name="res_label">Response</string>
+    <string name="final_response">Here is your response.</string>
+    <string name="on_switch">Switch is ON</string>
+    <string name="off_switch">Switch is OFF</string>
+    <string name="permission">Permission required.</string>
 </resources>
