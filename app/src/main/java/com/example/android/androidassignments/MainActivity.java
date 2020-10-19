@@ -24,13 +24,14 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private Button button;
     protected static final String ACTIVITY_NAME = "MainActivity";
-
+    private Button chatButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_NAME,"In onCreate()");
         loadlocale();
         setContentView(R.layout.activity_main);
+        chatButton = findViewById(R.id.chatBtn);
 
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        chatButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+           Log.i(MainActivity.ACTIVITY_NAME,"User clicked Start Chat");
+            Intent chatWindowActivity = new Intent(MainActivity.this, ChatWindow.class);
+            MainActivity.this.startActivity(chatWindowActivity);
+        }
+
+         });
+
+
     }
 
     @Override
@@ -133,4 +145,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = prefs.getString("My_Lang", "");
     }
+
+
 }

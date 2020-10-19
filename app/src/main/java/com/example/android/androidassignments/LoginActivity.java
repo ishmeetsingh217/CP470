@@ -21,7 +21,7 @@ import java.security.Key;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailAddress;
-    private Button LoginButton;
+
 
     protected static final String ACTIVITY_NAME = "LoginActivity";
 
@@ -31,20 +31,21 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(ACTIVITY_NAME,"In onCreate()");
-
-        LoginButton = findViewById(R.id.LoginButton);
+        setContentView(R.layout.activity_login);
+        final Button LoginButton = (Button)findViewById(R.id.LoginButton);
         emailAddress = findViewById(R.id.txtEmailAddress);
 
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//        startActivity(intent);
 
-        setContentView(R.layout.activity_login);
+
         appPreferences = getSharedPreferences(sharedPreferencesFile, MODE_PRIVATE);
         String userName = appPreferences.getString("LOGIN_USER_NAME", "");
         if(!(userName.equals("")))
         {
             emailAddress.setText(userName);
         }
+   Log.e("ishmeet",R.id.LoginButton + "");
         LoginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
