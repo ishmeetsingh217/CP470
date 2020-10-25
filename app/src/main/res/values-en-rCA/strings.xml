@@ -19,4 +19,13 @@
     <string name="on_switch">Switch is ON</string>
     <string name="off_switch">Switch is OFF</string>
     <string name="permission">Permission required.</string>
+    <string name="startChat">Start Chat</string>
+    <string name="sendbtn">SEND</string>
+    <string name="testToolbar">Test Toolbar</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <string name="title_activity_test_toolbar1">TestToolbar1</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="pickcolour">Pick a Colour</string>
+    <string name="editMsg">Edit Message</string>
 </resources>

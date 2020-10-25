@@ -19,4 +19,12 @@
     <string name="on_switch">Switch on h </string>
     <string name="off_switch">Switch off h </string>
     <string name="permission">ejaazat chaheyeh.</string>
+    <string name="startChat">Baat shuru</string>
+    <string name="sendbtn">Bhej</string>
+    <string name="testToolbar">टेस्ट टूलबार</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <string name="title_activity_test_toolbar1">TestToolbar1</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="pickcolour">Pick a Colour</string>
 </resources>

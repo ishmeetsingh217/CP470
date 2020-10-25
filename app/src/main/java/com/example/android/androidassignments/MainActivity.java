@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     protected static final String ACTIVITY_NAME = "MainActivity";
     private Button chatButton;
+    private Button toolBarBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         loadlocale();
         setContentView(R.layout.activity_main);
         chatButton = findViewById(R.id.chatBtn);
-
+        toolBarBtn = findViewById(R.id.testToolbarbtn);
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        toolBarBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent toolBarActivity = new Intent(MainActivity.this, TestToolbar.class);
+                startActivityForResult(toolBarActivity,10);
+            }
+        });
+
         chatButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -106,41 +116,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showChangeLanguageDialog() {
-        final String [] listItems = {"हिन्दी", "ਪੰਜਾਬੀ","English"};
-        AlertDialog.Builder mBuilder =new AlertDialog.Builder(MainActivity.this);
-        mBuilder.setTitle("Choose Language....");
-        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (i == 0) {
-                    setLocale("hi");
-                    recreate();
-                } else if (i == 1) {
-                    setLocale("pa");
-                    recreate();
-                } else if (i == 2) {
-                    setLocale("en");
-                    recreate();
-                }
-                dialogInterface.dismiss();
-            }
 
-        });
-        AlertDialog mDialog = mBuilder.create();
-        mDialog.show();
-    }
 
-    private void setLocale(String lang) {
-        Locale locale= new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        SharedPreferences.Editor editor = getSharedPreferences("Settings",MODE_PRIVATE).edit();
-        editor.putString("My_Lang",lang);
-        editor.apply();
-    }
     public void loadlocale(){
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = prefs.getString("My_Lang", "");
