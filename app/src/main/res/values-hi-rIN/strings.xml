@@ -2,4 +2,30 @@
 <resources>
     <string name="app_name">Assignment 1</string>
     <string name="message">Namaste</string>
+    <string name="ButtonText">Mai button hun</string>
+    <string name="LoginText">Log in karen</string>
+    <string name="LoginName">Naam likheye</string>
+    <string name="Passoword">Kunjika</string>
+    <string name="RadioButton">Rediyo Batan</string>
+    <string name="CheckBox">Jaanch Daba</string>
+    <string name="Switch">Yeh kya karega?</string>
+
+    <string name="yes_label">Ha</string>
+    <string name="no_label">Na</string>
+    <string name="cofirm_label">Pakka</string>
+    <string name="confirmation_label">pakka na?</string>
+    <string name="res_label">jawab</string>
+    <string name="final_response">Yeh raha jawab</string>
+    <string name="on_switch">Switch on h </string>
+    <string name="off_switch">Switch off h </string>
+    <string name="permission">ejaazat chaheyeh.</string>
+    <string name="startChat">Baat shuru</string>
+    <string name="sendbtn">Bhej</string>
+    <string name="testToolbar">टेस्ट टूलबार</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <string name="title_activity_test_toolbar1">TestToolbar1</string>
+    <string name="ok">Ha</string>
+    <string name="cancel">Na</string>
+    <string name="pickcolour">क्या आप वापस जाना चाहते हैं?</string>
+    <string name="editMsg">संदेश संपादित करें</string>
 </resources>
