@@ -1,5 +1,6 @@
 package com.example.android.androidassignments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -82,16 +83,20 @@ public class TestToolbar extends AppCompatActivity {
                 final View mgetDialogView = minflater.inflate(R.layout.moveactivity, null);
                 final AlertDialog mmDialog = new AlertDialog.Builder(this).create();
                 mmDialog.setView(mgetDialogView);
+                final Intent moveIntent = new Intent(TestToolbar.this, MainActivity.class);
                 mgetDialogView.findViewById(R.id.moveNO).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
-                        Intent moveIntent = new Intent(TestToolbar.this, MainActivity.class);
+
                         startActivity(moveIntent);
+
                     }
                 });
                 mgetDialogView.findViewById(R.id.moveOK).setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
+                    moveIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(moveIntent);
                     finish();
                 }
             });

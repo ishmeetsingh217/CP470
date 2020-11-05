@@ -26,6 +26,6 @@
     <string name="title_activity_test_toolbar1">TestToolbar1</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="pickcolour">Pick a Colour</string>
+    <string name="pickcolour">Do you want to go back?</string>
     <string name="editMsg">Edit Message</string>
 </resources>

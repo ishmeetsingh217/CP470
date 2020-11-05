@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent toolBarActivity = new Intent(MainActivity.this, TestToolbar.class);
-                startActivityForResult(toolBarActivity,10);
+                startActivityForResult(toolBarActivity,5);
             }
         });
 

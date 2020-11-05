@@ -24,7 +24,8 @@
     <string name="testToolbar">टेस्ट टूलबार</string>
     <string name="title_activity_test_toolbar">TestToolbar</string>
     <string name="title_activity_test_toolbar1">TestToolbar1</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="pickcolour">Pick a Colour</string>
+    <string name="ok">Ha</string>
+    <string name="cancel">Na</string>
+    <string name="pickcolour">क्या आप वापस जाना चाहते हैं?</string>
+    <string name="editMsg">संदेश संपादित करें</string>
 </resources>
