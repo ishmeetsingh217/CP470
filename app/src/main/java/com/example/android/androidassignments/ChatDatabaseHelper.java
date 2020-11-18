@@ -20,8 +20,13 @@ public class ChatDatabaseHelper extends SQLiteOpenHelper {
         Log.i("ChatDatabaseHelper", "Calling onCreate");
 
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_MESSAGE + " TEXT NOT NULL DEFAULT '');");
+
+        db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('Hello');");
+        db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('This is a test');");
+=======
         //db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('H3);");
         //db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('This is a test');");
+
     }
 
     @Override

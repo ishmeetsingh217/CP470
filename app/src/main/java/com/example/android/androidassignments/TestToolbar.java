@@ -88,7 +88,11 @@ public class TestToolbar extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
 
+
+                       mmDialog.hide();
+=======
                         mmDialog.hide();
+
 
                     }
                 });

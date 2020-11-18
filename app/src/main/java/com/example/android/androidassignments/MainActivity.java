@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "MainActivity";
     private Button chatButton;
     private Button toolBarBtn;
+    private Button weatherBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         chatButton = findViewById(R.id.chatBtn);
         toolBarBtn = findViewById(R.id.testToolbarbtn);
+        weatherBtn = findViewById(R.id.weatherBtn);
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +53,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(toolBarActivity,5);
             }
         });
-
+        weatherBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent weatherActivity = new Intent(MainActivity.this, WeatherForecast.class);
+                startActivity(weatherActivity);
+            }
+        });
         chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
