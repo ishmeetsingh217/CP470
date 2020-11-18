@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         {
             emailAddress.setText(userName);
         }
-   Log.e("ishmeet",R.id.LoginButton + "");
+        Log.e("ishmeet",R.id.LoginButton + "");
         LoginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

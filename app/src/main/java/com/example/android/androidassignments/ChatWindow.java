@@ -46,7 +46,11 @@ public class ChatWindow extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 Toast.makeText(ChatWindow.this, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+=======
+                //Toast.makeText(ChatWindow.this, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+
                 mArrayList.add(mEditText.getText().toString());
                 messageAdapter.notifyDataSetChanged();
                 db.execSQL("INSERT INTO " + ChatDatabaseHelper.TABLE_NAME + " (" + ChatDatabaseHelper.KEY_MESSAGE+") VALUES ('" + mEditText.getText()+"')");
@@ -89,7 +93,7 @@ public class ChatWindow extends AppCompatActivity {
         }
 
 
-         public int getCount() {
+        public int getCount() {
             return mArrayList.size();
         }
 

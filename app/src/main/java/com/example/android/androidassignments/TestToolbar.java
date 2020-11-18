@@ -88,18 +88,22 @@ public class TestToolbar extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
 
+
                        mmDialog.hide();
+=======
+                        mmDialog.hide();
+
 
                     }
                 });
                 mgetDialogView.findViewById(R.id.moveOK).setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    moveIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(moveIntent);
-                    finish();
-                }
-            });
+                    @Override
+                    public void onClick(View v){
+                        moveIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(moveIntent);
+                        finish();
+                    }
+                });
                 mmDialog.show();
                 break;
             case R.id.action_three:
