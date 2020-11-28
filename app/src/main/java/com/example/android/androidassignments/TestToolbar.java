@@ -90,8 +90,12 @@ public class TestToolbar extends AppCompatActivity {
 
 
                        mmDialog.hide();
-=======
+
+
+                       mmDialog.hide();
+
                         mmDialog.hide();
+
 
 
                     }

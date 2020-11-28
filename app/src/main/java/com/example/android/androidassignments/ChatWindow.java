@@ -1,8 +1,16 @@
 package com.example.android.androidassignments;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.content.Context;
+
+import android.content.Intent;
+import android.content.res.Configuration;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +39,18 @@ public class ChatWindow extends AppCompatActivity {
     public static SQLiteDatabase db;
     public static String temp = "";
     public static String ACTIVITY_NAME = "ChatWindow";
+
+    public static final String BUNDLE_NAME = "newBundle";
     public String addMessage = "";
+    public boolean isFrame = false;
+    public Cursor mCursor;
+    public static final int VALID_CODE = 15;
+    public ChatAdapter messageAdapter;
+    public FragmentTransaction fragmentTrans;
+    public MessageFragment msgFragment;
+
+    public String addMessage = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +58,13 @@ public class ChatWindow extends AppCompatActivity {
         mListView = findViewById(R.id.mListView);
         mEditText = findViewById(R.id.mEditText);
         mButton = findViewById(R.id.sendButton);
-
-        final ChatAdapter messageAdapter = new ChatAdapter(this);
+        if(findViewById(R.id.frame) != null) {
+            isFrame = true;
+            Log.e(ACTIVITY_NAME,"Frame Loaded");
+        }else{
+            Log.e(ACTIVITY_NAME,"Frame not Loaded");
+        }
+        messageAdapter = new ChatAdapter(this);
         mListView.setAdapter(messageAdapter);
 
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +73,12 @@ public class ChatWindow extends AppCompatActivity {
 
 
                 Toast.makeText(ChatWindow.this, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
-=======
+
+
+                Toast.makeText(ChatWindow.this, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+
                 //Toast.makeText(ChatWindow.this, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+
 
                 mArrayList.add(mEditText.getText().toString());
                 messageAdapter.notifyDataSetChanged();
@@ -60,10 +89,41 @@ public class ChatWindow extends AppCompatActivity {
         });
 
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                String message = messageAdapter.getItem(position);
+                Bundle newBundle = new Bundle();
+
+                newBundle.putString(ChatDatabaseHelper.KEY_MESSAGE, message);
+                newBundle.putLong(ChatDatabaseHelper.KEY_ID, messageAdapter.getItemid(position));
+                Log.i(ACTIVITY_NAME, "Message " + message + "  id " + messageAdapter.getItemid(position) );
+                if(findViewById(R.id.frame) != null){
+                    Log.i(ACTIVITY_NAME, "Currently on tablet");
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    msgFragment = new MessageFragment();
+                    fragmentTrans = fragmentManager.beginTransaction();
+                    msgFragment.setArguments(newBundle);
+                    fragmentTrans.replace(R.id.frame, msgFragment).addToBackStack(null).commit();
+                }else{
+                    Log.i(ACTIVITY_NAME, "Currently not on tablet");
+                    Intent chatWindow = new Intent(ChatWindow.this, MessageDetails.class);
+                    chatWindow.putExtra("newBundle", newBundle);
+                    startActivityForResult(chatWindow, Activity.RESULT_OK);
+                }
+            }
+        });
+
+
+
         dbHelper = new ChatDatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
         temp = "SELECT * FROM messages";
+
+        mCursor = db.rawQuery(temp, null);
+
         Cursor mCursor = db.rawQuery(temp, null);
+
         //Toast.makeText(this, "Count: " + mCursor.getColumnCount(), Toast.LENGTH_SHORT).show();
         mCursor.moveToFirst();
         while(!mCursor.isAfterLast()){
@@ -75,6 +135,9 @@ public class ChatWindow extends AppCompatActivity {
         for(int i = 0; i < mCursor.getColumnCount(); i++){
             Log.i(ACTIVITY_NAME, "Column's name: " + mCursor.getColumnName(i));
         }
+
+        //mCursor.close();
+
         mCursor.close();
     }
 
@@ -83,7 +146,40 @@ public class ChatWindow extends AppCompatActivity {
     public void onDestroy(){
         super.onDestroy();
         db.close();
+
     }
+
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        db.close();
+    }
+
+    public void deleteItem(int pos){
+        FragmentManager manager = getSupportFragmentManager();
+        db.delete(ChatDatabaseHelper.TABLE_NAME, ChatDatabaseHelper.KEY_ID + " = " + pos, null);
+        Log.i(ACTIVITY_NAME, "pos = " + pos);
+        mArrayList.remove(pos);
+        fragmentTrans = manager.beginTransaction();
+        fragmentTrans.remove(msgFragment).commit();
+        messageAdapter.notifyDataSetChanged();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(ACTIVITY_NAME, "We came back");
+        if (resultCode == Activity.RESULT_OK){
+            String row = data.getStringExtra("deleteThis");
+            Log.i("delete row: ", ""+row);
+            db.delete(ChatDatabaseHelper.TABLE_NAME,ChatDatabaseHelper.KEY_ID+ "="+row,null);
+            deleteItem(Integer.valueOf(row));
+            mArrayList.remove(Integer.parseInt(row)-1);
+            messageAdapter.notifyDataSetChanged();
+        }
+
+    }
+
     public void testList(){
         Toast.makeText(ChatWindow.this, "Its here", Toast.LENGTH_SHORT).show();
     }
@@ -96,7 +192,11 @@ public class ChatWindow extends AppCompatActivity {
         public int getCount() {
             return mArrayList.size();
         }
+        public long getItemid(int position){
+            mCursor.moveToPosition(position);
 
+            return mCursor.getLong(mCursor.getColumnIndex(ChatDatabaseHelper.KEY_ID));
+        }
         public String getItem(int position) {
             //Log.e("ISHMEET", mArrayList.get(position));
             return mArrayList.get(position);

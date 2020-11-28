@@ -23,9 +23,14 @@ public class ChatDatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('Hello');");
         db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('This is a test');");
-=======
+
+
+        db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('Hello');");
+        db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('This is a test');");
+
         //db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('H3);");
         //db.execSQL("INSERT INTO messages (" + KEY_MESSAGE + ") VALUES ('This is a test');");
+
 
     }
 
