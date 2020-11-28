@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MessageDetails"></activity>
         <activity android:name=".WeatherForecast" />
         <activity
@@ -20,7 +21,15 @@
             android:label="@string/title_activity_test_toolbar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ChatWindow" />
-        <activity android:name=".LoginActivity" />
+
+        <activity android:name=".WeatherForecast"></activity>
+        <activity
+            android:name=".TestToolbar"
+            android:label="@string/title_activity_test_toolbar"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ChatWindow"></activity>
+        <activity android:name=".LoginActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +37,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ListItemsActivity" />
     </application>
 
+        <activity android:name=".ListItemsActivity"></activity>
+
+
+    </application>
+    <!--PERMISSIONS-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>

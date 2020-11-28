@@ -27,9 +27,11 @@
     <string name="cancel">No</string>
     <string name="pickcolour">Do you want to go back?</string>
     <string name="editMsg">Edit Message</string>
+
     <string name="msghere" translatable="false">Message Here</string>
     <string name="msgID" translatable="false">ID=</string>
     <string name="deleteMsg" translatable="false">DELETE THIS MESSAGE</string>
+
     <string-array name="cities">
         <item>Abbotsford</item>
         <item>Alert</item>
@@ -279,6 +281,8 @@
         <item>Yellowknife</item>
         <item>Yorkton</item>
     </string-array>
+
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

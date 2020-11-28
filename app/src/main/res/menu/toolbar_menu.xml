@@ -23,6 +23,4 @@
     <item android:id="@+id/aboutMenu"
         android:title="About"
         app:showAsAction="never" />
-
-
 </menu>

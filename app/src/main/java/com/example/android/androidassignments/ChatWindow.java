@@ -7,8 +7,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Context;
+
 import android.content.Intent;
 import android.content.res.Configuration;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ public class ChatWindow extends AppCompatActivity {
     public static SQLiteDatabase db;
     public static String temp = "";
     public static String ACTIVITY_NAME = "ChatWindow";
+
     public static final String BUNDLE_NAME = "newBundle";
     public String addMessage = "";
     public boolean isFrame = false;
@@ -45,6 +48,9 @@ public class ChatWindow extends AppCompatActivity {
     public ChatAdapter messageAdapter;
     public FragmentTransaction fragmentTrans;
     public MessageFragment msgFragment;
+
+    public String addMessage = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +71,15 @@ public class ChatWindow extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 Toast.makeText(ChatWindow.this, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+
+
+                Toast.makeText(ChatWindow.this, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(ChatWindow.this, mEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+
+
                 mArrayList.add(mEditText.getText().toString());
                 messageAdapter.notifyDataSetChanged();
                 db.execSQL("INSERT INTO " + ChatDatabaseHelper.TABLE_NAME + " (" + ChatDatabaseHelper.KEY_MESSAGE+") VALUES ('" + mEditText.getText()+"')");
@@ -73,6 +87,7 @@ public class ChatWindow extends AppCompatActivity {
 
             }
         });
+
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -100,10 +115,15 @@ public class ChatWindow extends AppCompatActivity {
         });
 
 
+
         dbHelper = new ChatDatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
         temp = "SELECT * FROM messages";
+
         mCursor = db.rawQuery(temp, null);
+
+        Cursor mCursor = db.rawQuery(temp, null);
+
         //Toast.makeText(this, "Count: " + mCursor.getColumnCount(), Toast.LENGTH_SHORT).show();
         mCursor.moveToFirst();
         while(!mCursor.isAfterLast()){
@@ -115,7 +135,18 @@ public class ChatWindow extends AppCompatActivity {
         for(int i = 0; i < mCursor.getColumnCount(); i++){
             Log.i(ACTIVITY_NAME, "Column's name: " + mCursor.getColumnName(i));
         }
+
         //mCursor.close();
+
+        mCursor.close();
+    }
+
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        db.close();
+
     }
 
 
@@ -158,7 +189,7 @@ public class ChatWindow extends AppCompatActivity {
         }
 
 
-         public int getCount() {
+        public int getCount() {
             return mArrayList.size();
         }
         public long getItemid(int position){
@@ -167,7 +198,7 @@ public class ChatWindow extends AppCompatActivity {
             return mCursor.getLong(mCursor.getColumnIndex(ChatDatabaseHelper.KEY_ID));
         }
         public String getItem(int position) {
-            Log.e("ISHMEET", mArrayList.get(position));
+            //Log.e("ISHMEET", mArrayList.get(position));
             return mArrayList.get(position);
         }
 
